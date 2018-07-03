@@ -1,0 +1,30 @@
+{
+  "name": "titanium-karma-client",
+  "version": "0.1.0",
+  "description": "Karma test runner client for Titanium",
+  "main": "dist/karma.js",
+  "typings": "types/index.d.ts",
+  "scripts": {
+    "build": "rollup -c",
+    "lint": "eslint --config axway/env-titanium src",
+    "test": "lint"
+  },
+  "keywords": [
+    "karma",
+    "client",
+    "titanium"
+  ],
+  "author": "Axway Appcelerator",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.5",
+    "babel-preset-env": "^1.7.0",
+    "eslint": "^5.0.1",
+    "eslint-config-axway": "^2.0.14",
+    "eventemitter3": "^3.1.0",
+    "rollup": "^0.62.0",
+    "rollup-plugin-commonjs": "^9.1.3",
+    "rollup-plugin-node-resolve": "^3.3.0"
+  }
+}
