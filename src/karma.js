@@ -11,10 +11,14 @@ import http from './http';
  * Based on https://github.com/karma-runner/karma/blob/master/client/karma.js
  */
 export default class KarmaClient extends EventEmitter {
-	constructor(baseUrl) {
+	constructor(urlString) {
 		super();
 
-		this.baseUrl = baseUrl;
+		const url = this.parseUrlString(urlString);
+		console.log(url);
+		this.baseUrl = `${url.protocol}//${url.host}${url.pathname}`.replace(/\/$/, '');
+		console.log(this.baseUrl);
+		this.id = url.queryParams.id || 'Titanium-' + Math.floor(Math.random() * 10000);
 		this.startEmitted = false;
 		this.resetResultCounters();
 		this.config = {};
@@ -27,7 +31,7 @@ export default class KarmaClient extends EventEmitter {
 		this.socket = io.connect(this.baseUrl);
 		this.socket.on('connect', () => {
 			this.socket.emit('register', {
-				id: 'Titanium-' + Math.floor(Math.random() * 10000),
+				id: this.id,
 				name: `Titanium ${Ti.version} (${Ti.Platform.name} ${Ti.Platform.model})`
 			});
 		});
@@ -185,6 +189,45 @@ export default class KarmaClient extends EventEmitter {
 		} else {
 			this.socket.emit('info', info);
 		}
+	}
+
+	parseUrlString(urlString) {
+		const urlPattern = /^(https?:)\/\/(([^:/?#]*)(?::([0-9]+))?)([/]{0,1}[^?#]*)\??([^#]*|)$/;
+		const match = urlString.match(urlPattern);
+		if (!match) {
+			throw new Error(`Failed to parse URL ${urlString}`);
+		}
+
+		const protocol = match[1];
+		let host = match[2];
+		let hostname = match[3];
+		const port = match[4];
+		const pathname = match[5];
+		const search = match[6];
+		const queryParams = {};
+		if (search) {
+			const keyValuePairs = search.split('&');
+			for (const keyValuePair of keyValuePairs) {
+				const [ key, value ] = keyValuePair.split('=');
+				queryParams[key] = value;
+			}
+		}
+
+		if (Ti.Platform.model.toLowerCase().indexOf('sdk') !== -1) {
+			if ([ 'localhost', '127.0.0.1' ].indexOf(hostname) !== -1) {
+				hostname = '10.0.2.2';
+				host = port ? `${hostname}:${port}` : hostname;
+			}
+		}
+
+		return {
+			protocol,
+			host,
+			hostname,
+			port,
+			pathname,
+			queryParams
+		};
 	}
 
 	resetResultCounters() {
