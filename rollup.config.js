@@ -1,5 +1,5 @@
 import commonjs from 'rollup-plugin-commonjs';
-import node from 'rollup-plugin-node-resolve';
+import nodeResolve from 'rollup-plugin-node-resolve';
 
 export default {
 	input: 'src/karma.js',
@@ -9,7 +9,7 @@ export default {
 	},
 	external: [ 'ti.socketio' ],
 	plugins: [
-		node(),
+		nodeResolve(),
 		commonjs()
 	]
 };
