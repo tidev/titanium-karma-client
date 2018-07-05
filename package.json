@@ -6,7 +6,7 @@
   "typings": "types/index.d.ts",
   "scripts": {
     "build": "rollup -c",
-    "lint": "eslint --config axway/env-titanium src",
+    "lint": "eslint src",
     "test": "lint"
   },
   "keywords": [
