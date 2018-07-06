@@ -10,11 +10,11 @@ npm i titanium-karma-client -S
 
 ## Usage
 
-> :bulb: If you just want to run unit tests consider using the [karma-titanium-launcher] wich makes use of this package and does all the required setup for you to test your projects.
+> :bulb: If you just want to run unit tests consider using the [karma-titanium-launcher](https://github.com/appcelerator/karma-titanium-launcher) wich makes use of this package and does all the required setup for you to test your projects.
 
 This client connect to a Karma server, loads all required files including the testing framework and individual unit test, executes the tests and then reports the results back to the Karma server. This client is heavily inspired by the default Karma Web client that is used for Browser testing and was adapted to work inside Titanium.
 
-You create a client by instanciating `KarmaClient`, passing it the URL it should connect to. After that you can connect and optionally bind a few events to listen for status changes.
+You create a client by instantiating `KarmaClient`, passing it the URL it should connect to. After that you do the actual connect and optionally bind a few events to listen for status changes.
 
 ```js
 import KarmaClient from 'titanium-karma-client';
@@ -66,12 +66,12 @@ You can listen to a set of events to respond to certain status changes using the
 ## Contributions
 
 Open source contributions are greatly appreciated! If you have a bugfix, improvement or new feature, please create
-[an issue](https://github.com/appcelerator/karma-titanium-launcher/issues/new) first and submit a [pull request](https://github.com/appcelerator/karma-titanium-launcher/pulls/new) against master.
+[an issue](https://github.com/appcelerator/titanium-karma-client/issues/new) first and submit a [pull request](https://github.com/appcelerator/titanium-karma-client/compare) against master.
 
 ## Getting Help
 
 If you have questions about unit testing your Titanium apps or libraries with Karma, feel free to reach out on Stackoverflow or the
-`#helpme` channel on [TiSlack](http://tislack.org). In case you find a bug related to this library, create a [new issue](https://github.com/appcelerator/karma-titanium-launcher/issues/new)
+`#helpme` channel on [TiSlack](http://tislack.org). In case you find a bug related to this library, create a [new issue](https://github.com/appcelerator/titanium-karma-client/issues/new)
 or open a [new JIRA ticket](https://jira.appcelerator.org).
 
 ## License
