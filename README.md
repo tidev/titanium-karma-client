@@ -55,7 +55,7 @@ Connects to the Karma server and starts the test run.
 You can listen to a set of events to respond to certain status changes using the `on` method. Available events are:
 
 * `execute` Emitted when the Karma server sends the `execute` message. This will cause the client to start loading all required files for the test run from the Karma server.
-* `result` This event will report the result of each unit test. The event will include information about the current number of completed tests as well as the total number of tests being executed.
+* `result` This event will be emitted when the client reports a test result back to Karma. The event will include information about the current number of completed tests as well as the total number of tests being executed.
   * `completed` `<Number>` The number of completed tests
   * `total` `<Number>` The number of total tests in this test run
 * `complete` Emitted when the test run is complete. Includes information about skipped and failed tests and the total number of tests executed.
