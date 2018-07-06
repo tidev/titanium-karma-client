@@ -7,7 +7,7 @@
   "scripts": {
     "build": "rollup -c",
     "lint": "eslint src",
-    "test": "lint",
+    "test": "npm run lint",
     "prepublishOnly": "npm run build"
   },
   "keywords": [
