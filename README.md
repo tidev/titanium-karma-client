@@ -12,9 +12,9 @@ npm i titanium-karma-client -S
 
 > :bulb: If you just want to run unit tests consider using the [karma-titanium-launcher](https://github.com/appcelerator/karma-titanium-launcher) wich makes use of this package and does all the required setup for you to test your projects.
 
-This client connect to a Karma server, loads all required files including the testing framework and individual unit test, executes the tests and then reports the results back to the Karma server. This client is heavily inspired by the default Karma Web client that is used for Browser testing and was adapted to work inside Titanium.
+This client connects to a Karma server, loads all required files including the testing framework and individual unit tests, executes the tests and then reports the results back to the Karma server. This client is heavily inspired by the default Karma Web client that is used for Browser testing and was adapted to work inside Titanium.
 
-You create a client by instantiating `KarmaClient`, passing it the URL it should connect to. After that you do the actual connect and optionally bind a few events to listen for status changes.
+You create a client by instantiating `KarmaClient`, passing it the URL it should connect to. After that you do the actual connect and can optionally bind a few events to listen for status changes.
 
 ```js
 import KarmaClient from 'titanium-karma-client';
@@ -36,7 +36,7 @@ client.on('complete', e => {
 
 ### new KarmaClient(url)
 
-Create a new KarmaClient instance and sets the URL to connect to. If the URL contains and `id` query parameter the client will register to the Karma server using this identifer. If the parameter is missing the client generates a random id to connect with.
+Creates a new KarmaClient instance and sets the URL to connect to. If the URL contains an `id` query parameter the client will register to the Karma server using this identifer. If the parameter is missing the client generates a random identifier to connect with.
 
 | Name | Type | Description |
 | --- | --- | --- |
@@ -44,7 +44,7 @@ Create a new KarmaClient instance and sets the URL to connect to. If the URL con
 
 ### KarmaClient.connect()
 
-Connect to the Karma server and starts the test run. This will
+Connects to the Karma server and starts the test run.
 
 ### Event API
 
