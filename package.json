@@ -7,7 +7,8 @@
   "scripts": {
     "build": "rollup -c",
     "lint": "eslint src",
-    "test": "lint"
+    "test": "lint",
+    "prepare": "npm run build"
   },
   "keywords": [
     "karma",
