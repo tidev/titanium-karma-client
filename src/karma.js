@@ -11,15 +11,14 @@ import http from './http';
  * Based on https://github.com/karma-runner/karma/blob/master/client/karma.js
  */
 export default class KarmaClient extends EventEmitter {
-	constructor(urlString) {
+	constructor(options) {
 		super();
 
-		const url = this.parseUrlString(urlString);
-		console.log(url);
+		const url = this.parseUrlString(options.url);
 		this.baseUrl = `${url.protocol}//${url.host}${url.pathname}`.replace(/\/$/, '');
-		console.log(this.baseUrl);
 		this.id = url.queryParams.id || 'Titanium-' + Math.floor(Math.random() * 10000);
 		this.startEmitted = false;
+		this.isSingleRun = options.singleRun || false;
 		this.resetResultCounters();
 		this.config = {};
 
@@ -38,6 +37,10 @@ export default class KarmaClient extends EventEmitter {
 		this.socket.on('execute', this.executeTestRun.bind(this));
 		this.socket.on('stop', this.complete.bind(this));
 		this.socket.on('disconnect', reason => Ti.API.debug(`Socket disconnected with reason ${reason}`));
+	}
+
+	disconnect() {
+		this.socket.disconnect();
 	}
 
 	executeTestRun(config) {
@@ -178,6 +181,10 @@ export default class KarmaClient extends EventEmitter {
 
 		this.socket.emit('complete', result || {}, () => {
 			Ti.API.trace('Test run complete');
+
+			if (this.isSingleRun) {
+				this.disconnect();
+			}
 		});
 	}
 
