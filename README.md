@@ -18,7 +18,7 @@ You create a client by instantiating `KarmaClient`, passing it the URL it should
 
 ```js
 import KarmaClient from 'titanium-karma-client';
-const client = new KarmaClient('http://localhost:9876/?id=123456');
+const client = new KarmaClient({ url: 'http://localhost:9876/?id=123456' });
 client.connect();
 client.on('execute', () => console.log('Loading files ...'));
 client.on('result', e => console.log(`Running tests (${e.completed} / ${e.total})`));
@@ -34,17 +34,22 @@ client.on('complete', e => {
 
 ## Public API
 
-### new KarmaClient(url)
+### new KarmaClient(options)
 
-Creates a new KarmaClient instance and sets the URL to connect to. If the URL contains an `id` query parameter the client will register to the Karma server using this identifer. If the parameter is missing the client generates a random identifier to connect with.
+Creates a new KarmaClient instance and sets the passed options. The options object can contain the following settings:
 
-| Name | Type | Description |
-| --- | --- | --- |
-| `url` | `Sring` | The base url of the Karma server to connect to. Can include an optional `id` query param to identify the client. |
+| Name | Type | Required | Description |
+| --- | --- | --- | --- |
+| `url` | `Sring` | Yes | The base url of the Karma server to connect to. If the URL contains an `id` query parameter the client will register to the Karma server using this identifer. If the parameter is missing the client generates a random identifier to connect with. |
+| `singleRun` | `Boolean` | No | Disconnect the client from the Karma server after a single run. Used in consuction with the Karma config of the same name. Defaults to false. |
 
 ### KarmaClient.connect()
 
 Connects to the Karma server and starts the test run.
+
+### KarmaClient.disconnect()
+
+Disconnects the client from the Karma server.
 
 ### Event API
 
