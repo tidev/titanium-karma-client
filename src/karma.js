@@ -17,6 +17,7 @@ export default class KarmaClient extends EventEmitter {
 		const url = this.parseUrlString(options.url);
 		this.baseUrl = `${url.protocol}//${url.host}${url.pathname}`.replace(/\/$/, '');
 		this.id = url.queryParams.id || 'Titanium-' + Math.floor(Math.random() * 10000);
+		this.displayName = url.queryParams.displayName;
 		this.startEmitted = false;
 		this.isSingleRun = options.singleRun || false;
 		this.resetResultCounters();
@@ -29,10 +30,14 @@ export default class KarmaClient extends EventEmitter {
 		Ti.API.debug(`Connecting to ${this.baseUrl}`);
 		this.socket = io.connect(this.baseUrl);
 		this.socket.on('connect', () => {
-			this.socket.emit('register', {
+			const info = {
 				id: this.id,
 				name: `Titanium ${Ti.version} (${Ti.Platform.name} ${Ti.Platform.model})`
-			});
+			};
+			if (this.displayName) {
+				info.displayName = this.displayName;
+			}
+			this.socket.emit('register', info);
 		});
 		this.socket.on('execute', this.executeTestRun.bind(this));
 		this.socket.on('stop', this.complete.bind(this));
