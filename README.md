@@ -1,5 +1,7 @@
 # Karma client for Titanium
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/appcelerator/titanium-karma-client.svg)](https://greenkeeper.io/)
+
 > Axway Titanium version of the Karma client
 
 ## Installation
