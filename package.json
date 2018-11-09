@@ -30,7 +30,7 @@
     "babel-eslint": "^9.0.0",
     "babel-preset-env": "^1.7.0",
     "eslint": "^5.0.1",
-    "eslint-config-axway": "^4.0.0",
+    "eslint-config-axway": "^4.1.1",
     "eventemitter3": "^3.1.0",
     "rollup": "^0.66.6",
     "rollup-plugin-commonjs": "^9.1.3",
