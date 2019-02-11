@@ -46,6 +46,12 @@ export default class KarmaClient extends EventEmitter {
 
 	disconnect() {
 		this.socket.disconnect();
+		if (Ti.App.iOS) {
+			// iOS will reconnect if the server will come available again and we
+			// don't explcitly disconnect the manager too.
+			// https://github.com/socketio/socket.io-client-swift/issues/1137
+			this.socket.io.disconnect();
+		}
 	}
 
 	executeTestRun(config) {
