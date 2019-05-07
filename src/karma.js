@@ -74,6 +74,7 @@ export default class KarmaClient extends EventEmitter {
 			})
 			.then(scriptUrls => {
 				return Promise.all(scriptUrls.map(scriptUrl => {
+					// eslint-disable-next-line promise/no-nesting
 					return http.getString(`${this.baseUrl}${scriptUrl}`)
 						.then(scriptContent => {
 							return {
@@ -86,19 +87,41 @@ export default class KarmaClient extends EventEmitter {
 			.then(scripts => {
 				scripts.forEach(script => {
 					Ti.API.debug(`Evaluating script ${script.url}`);
-					try {
-						// eslint-disable-next-line no-eval
-						var evalInGlobalContext = eval;
-						evalInGlobalContext(script.content);
-					} catch (e) {
-						Ti.API.error(e);
-					}
+
+					this.applyShims(script.url);
+
+					// eslint-disable-next-line no-eval
+					var evalInGlobalContext = eval;
+					evalInGlobalContext(script.content);
+
+					this.removeShims(script.url);
 				});
 
 				this.emit('start');
 
 				this.start();
+
+				return;
+			})
+			.catch(e => {
+				throw e;
 			});
+	}
+
+	applyShims(scriptUrl) {
+		if (scriptUrl.indexOf('mocha') !== -1) {
+			global.window = global;
+			global.location = {
+				pathname: '/'
+			};
+		}
+	}
+
+	removeShims(scriptUrl) {
+		if (scriptUrl.indexOf('mocha') !== -1) {
+			delete global.window;
+			delete global.location;
+		}
 	}
 
 	start() {
