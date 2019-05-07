@@ -27,11 +27,11 @@
   "homepage": "https://github.com/appcelerator/titanium-karma-client#readme",
   "devDependencies": {
     "babel-eslint": "^10.0.1",
-    "eslint": "^5.13.0",
-    "eslint-config-axway": "^4.2.1",
+    "eslint": "^5.16.0",
+    "eslint-config-axway": "^4.2.2",
     "eventemitter3": "^3.1.0",
-    "rollup": "^1.1.2",
-    "rollup-plugin-commonjs": "^9.2.0",
-    "rollup-plugin-node-resolve": "^4.0.0"
+    "rollup": "^1.11.3",
+    "rollup-plugin-commonjs": "^9.3.4",
+    "rollup-plugin-node-resolve": "^4.2.3"
   }
 }
