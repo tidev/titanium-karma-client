@@ -120,7 +120,6 @@ export default class KarmaClient extends EventEmitter {
 	removeShims(scriptUrl) {
 		if (scriptUrl.indexOf('mocha') !== -1) {
 			delete global.window;
-			delete global.location;
 		}
 	}
 
