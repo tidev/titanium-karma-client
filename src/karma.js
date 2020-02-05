@@ -109,16 +109,21 @@ export default class KarmaClient extends EventEmitter {
 	}
 
 	applyShims(scriptUrl) {
-		if (scriptUrl.indexOf('mocha') !== -1) {
+		if (scriptUrl.includes('mocha')) {
 			global.window = global;
 			global.location = {
 				pathname: '/'
+			};
+		} else if (scriptUrl.includes('jasmine')) {
+			global.window = global;
+			global.location = {
+				origin: 'null'
 			};
 		}
 	}
 
 	removeShims(scriptUrl) {
-		if (scriptUrl.indexOf('mocha') !== -1) {
+		if (scriptUrl.includes('mocha')) {
 			delete global.window;
 		}
 	}
