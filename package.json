@@ -1,6 +1,6 @@
 {
   "name": "titanium-karma-client",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Karma test runner client for Titanium",
   "main": "dist/karma.js",
   "typings": "types/index.d.ts",
