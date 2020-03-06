@@ -258,7 +258,7 @@ export default class KarmaClient extends EventEmitter {
 			}
 		}
 
-		if (Ti.Platform.model.toLowerCase().indexOf('sdk') !== -1) {
+		if (/sdk|emulator/i.test(Ti.Platform.model)) {
 			if ([ 'localhost', '127.0.0.1' ].indexOf(hostname) !== -1) {
 				hostname = '10.0.2.2';
 				host = port ? `${hostname}:${port}` : hostname;
