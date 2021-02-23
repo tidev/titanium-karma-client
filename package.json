@@ -8,7 +8,9 @@
     "build": "rollup -c",
     "lint": "eslint src",
     "test": "npm run lint",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "pinst --disable",
+    "postinstall": "husky install",
+    "postpublish": "pinst --enable"
   },
   "keywords": [
     "karma",
@@ -34,6 +36,7 @@
     "eventemitter3": "^4.0.0",
     "husky": "^5.1.1",
     "lint-staged": "^10.4.0",
+    "pinst": "^2.1.6",
     "rollup": "^2.32.0",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-resolve": "^5.2.0"
