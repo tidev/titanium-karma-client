@@ -28,9 +28,11 @@
   },
   "homepage": "https://github.com/appcelerator/titanium-karma-client#readme",
   "devDependencies": {
+    "@babel/core": "^7.13.10",
+    "@babel/eslint-parser": "^7.13.10",
+    "@babel/eslint-plugin": "^7.13.10",
     "@commitlint/cli": "^12.0.0",
     "@commitlint/config-conventional": "^12.0.0",
-    "babel-eslint": "^10.0.1",
     "eslint": "^7.11.0",
     "eslint-config-axway": "^6.0.0",
     "eventemitter3": "^4.0.0",
