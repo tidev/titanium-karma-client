@@ -34,7 +34,7 @@
     "@commitlint/cli": "^12.0.0",
     "@commitlint/config-conventional": "^12.0.0",
     "@rollup/plugin-commonjs": "^18.0.0",
-    "@rollup/plugin-node-resolve": "^13.0.0",
+    "@rollup/plugin-node-resolve": "^15.0.1",
     "eslint": "^7.11.0",
     "eslint-config-axway": "^6.0.0",
     "eventemitter3": "^4.0.0",
